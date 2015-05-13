@@ -20,3 +20,8 @@ C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\xunit.dll
 C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\xunit.xml
 C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Ploeh.AutoFixture.dll
+C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Ploeh.AutoFixture.xml
+C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Careers.Api.Tests.dll.config
+C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Castle.Facilities.Logging.dll
+C:\easyjet\Careers.Api\Careers.Api.Tests\bin\Debug\Castle.Facilities.Logging.xml

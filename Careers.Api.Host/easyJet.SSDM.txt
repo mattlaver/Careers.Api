@@ -1,0 +1,1 @@
+2015-05-13 04:05:04,005 [9] ERROR Careers.Api.Host.Queries.GetJobsFromFileQuery [(null)] - Job Summary directory does not exists: C:\easyjet\Careers.Api\Data2

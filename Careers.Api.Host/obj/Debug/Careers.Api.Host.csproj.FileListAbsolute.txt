@@ -15,3 +15,8 @@ C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Core.xml
 C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Windsor.xml
 C:\easyjet\Careers.Api\Careers.Api.Host\bin\Newtonsoft.Json.dll
 C:\easyjet\Careers.Api\Careers.Api.Host\bin\Newtonsoft.Json.xml
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\log4net.dll
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\log4net.xml
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Facilities.Logging.dll
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Facilities.Logging.xml
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Services.Logging.Log4netIntegration.dll

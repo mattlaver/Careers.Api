@@ -4,6 +4,105 @@
         <name>Castle.Windsor</name>
     </assembly>
     <members>
+        <member name="T:Castle.MicroKernel.Facilities.AbstractFacility">
+            <summary>
+              Base class for facilities.
+            </summary>
+        </member>
+        <member name="T:Castle.MicroKernel.IFacility">
+            <summary>
+              Unit of extension. A facility should use 
+              the extension points offered by the kernel
+              to augment its functionality.
+            </summary>
+        </member>
+        <member name="M:Castle.MicroKernel.IFacility.Init(Castle.MicroKernel.IKernel,Castle.Core.Configuration.IConfiguration)">
+            <summary>
+            </summary>
+            <param name = "kernel"></param>
+            <param name = "facilityConfig"></param>
+        </member>
+        <member name="M:Castle.MicroKernel.IFacility.Terminate">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Init">
+            <summary>
+              The custom initialization for the Facility.
+            </summary>
+            <remarks>
+              It must be overridden.
+            </remarks>
+        </member>
+        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Dispose">
+            <summary>
+              Performs the tasks associated with freeing, releasing, or resetting 
+              the facility resources.
+            </summary>
+            <remarks>
+              It can be overriden.
+            </remarks>
+        </member>
+        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Castle#MicroKernel#IFacility#Init(Castle.MicroKernel.IKernel,Castle.Core.Configuration.IConfiguration)">
+            <summary>
+              Initializes the facility. First it performs the initialization common for all 
+              facilities, setting the <see cref="P:Castle.MicroKernel.Facilities.AbstractFacility.Kernel"/> and the 
+              <see cref="P:Castle.MicroKernel.Facilities.AbstractFacility.FacilityConfig"/>. After it, the <c>Init</c> method is invoked
+              and the custom initilization is perfomed.
+            </summary>
+            <param name="kernel"></param>
+            <param name="facilityConfig"></param>
+        </member>
+        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Castle#MicroKernel#IFacility#Terminate">
+            <summary>
+              Terminates the Facility, invokes the <see cref="M:Castle.MicroKernel.Facilities.AbstractFacility.Dispose"/> method and sets 
+              the Kernel to a null reference.
+            </summary>
+        </member>
+        <member name="P:Castle.MicroKernel.Facilities.AbstractFacility.FacilityConfig">
+            <summary>
+              Gets the facility configuration.
+            </summary>
+            <value>The <see cref="T:Castle.Core.Configuration.IConfiguration"/> representing 
+              the facility configuration.</value>
+        </member>
+        <member name="P:Castle.MicroKernel.Facilities.AbstractFacility.Kernel">
+            <summary>
+              Gets the <see cref="T:Castle.MicroKernel.IKernel"/> where the facility is registered.
+            </summary>
+            <value>The <see cref="T:Castle.MicroKernel.IKernel"/>.</value>
+        </member>
+        <member name="M:Castle.Facilities.Startable.StartableFacility.DeferredStart">
+            <summary>
+                This method changes behavior of the facility. Deferred mode should be used when you have single call to <see cref="M:Castle.Windsor.IWindsorContainer.Install(Castle.MicroKernel.Registration.IWindsorInstaller[])"/> and register all your components there. Enabling
+                this mode will optimize the behavior of the facility so that it will wait 'till the end of installation and only after all <see cref="T:Castle.MicroKernel.Registration.IWindsorInstaller"/>s were ran it will instantiate and
+                start all the startable components. An exception will be thrown if a startable component can't be instantiated and started. This will help you fail fast and diagnose issues quickly. If you don't
+                want the exception to be thrown and you prefer the component to fail silently, use <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredTryStart"/> method instead.
+            </summary>
+            <remarks>It is recommended to use this method over <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredTryStart"/> method.</remarks>
+        </member>
+        <member name="M:Castle.Facilities.Startable.StartableFacility.DeferredStart(Castle.Facilities.Startable.StartFlag)">
+            <summary>
+                Startable components will be started when <see cref="M:Castle.Facilities.Startable.StartFlag.Signal"/> method is invoked. This is particularily usedul when you need to perform some extra initialization outside of container
+                before starting the Startable components.
+            </summary>
+        </member>
+        <member name="M:Castle.Facilities.Startable.StartableFacility.DeferredTryStart">
+            <summary>
+                This method changes behavior of the facility. Deferred mode should be used when you have single call to <see cref="M:Castle.Windsor.IWindsorContainer.Install(Castle.MicroKernel.Registration.IWindsorInstaller[])"/> and register all your components there. Enabling
+                this mode will optimize the behavior of the facility so that it will wait 'till the end of installation and only after all <see cref="T:Castle.MicroKernel.Registration.IWindsorInstaller"/>s were ran it will instantiate and
+                start all the startable components. No exception will be thrown if a startable component can't be instantiated and started. If you'd rather fail fast and diagnose issues quickly, use
+                <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredStart"/> method instead.
+            </summary>
+            <remarks>It is recommended to use <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredStart"/> method over this method.</remarks>
+        </member>
+        <member name="F:Castle.Facilities.Startable.StartableFacility.LegacyStartFlag.inStart">
+            <remarks>Don't check the waiting list while this flag is set as this could result in duplicate singletons.</remarks>
+        </member>
+        <member name="M:Castle.Facilities.Startable.StartableFacility.LegacyStartFlag.TryStart(Castle.MicroKernel.IHandler)">
+            <summary>Request the component instance</summary>
+            <param name = "handler"></param>
+        </member>
         <member name="T:Castle.MicroKernel.ComponentActivator.WebUserControlComponentActivator">
             <summary>
             Attempts to dynamically load a UserControl by invoking Page.LoadControl. There are two uses of this class.
@@ -2045,118 +2144,10 @@
             <param name="info">The object that holds the serialized object data.</param>
             <param name="context">The contextual information about the source or destination.</param>
         </member>
-        <member name="T:Castle.MicroKernel.Facilities.AbstractFacility">
-            <summary>
-              Base class for facilities.
-            </summary>
-        </member>
-        <member name="T:Castle.MicroKernel.IFacility">
-            <summary>
-              Unit of extension. A facility should use 
-              the extension points offered by the kernel
-              to augment its functionality.
-            </summary>
-        </member>
-        <member name="M:Castle.MicroKernel.IFacility.Init(Castle.MicroKernel.IKernel,Castle.Core.Configuration.IConfiguration)">
-            <summary>
-            </summary>
-            <param name = "kernel"></param>
-            <param name = "facilityConfig"></param>
-        </member>
-        <member name="M:Castle.MicroKernel.IFacility.Terminate">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Init">
-            <summary>
-              The custom initialization for the Facility.
-            </summary>
-            <remarks>
-              It must be overridden.
-            </remarks>
-        </member>
-        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Dispose">
-            <summary>
-              Performs the tasks associated with freeing, releasing, or resetting 
-              the facility resources.
-            </summary>
-            <remarks>
-              It can be overriden.
-            </remarks>
-        </member>
-        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Castle#MicroKernel#IFacility#Init(Castle.MicroKernel.IKernel,Castle.Core.Configuration.IConfiguration)">
-            <summary>
-              Initializes the facility. First it performs the initialization common for all 
-              facilities, setting the <see cref="P:Castle.MicroKernel.Facilities.AbstractFacility.Kernel"/> and the 
-              <see cref="P:Castle.MicroKernel.Facilities.AbstractFacility.FacilityConfig"/>. After it, the <c>Init</c> method is invoked
-              and the custom initilization is perfomed.
-            </summary>
-            <param name="kernel"></param>
-            <param name="facilityConfig"></param>
-        </member>
-        <member name="M:Castle.MicroKernel.Facilities.AbstractFacility.Castle#MicroKernel#IFacility#Terminate">
-            <summary>
-              Terminates the Facility, invokes the <see cref="M:Castle.MicroKernel.Facilities.AbstractFacility.Dispose"/> method and sets 
-              the Kernel to a null reference.
-            </summary>
-        </member>
-        <member name="P:Castle.MicroKernel.Facilities.AbstractFacility.FacilityConfig">
-            <summary>
-              Gets the facility configuration.
-            </summary>
-            <value>The <see cref="T:Castle.Core.Configuration.IConfiguration"/> representing 
-              the facility configuration.</value>
-        </member>
-        <member name="P:Castle.MicroKernel.Facilities.AbstractFacility.Kernel">
-            <summary>
-              Gets the <see cref="T:Castle.MicroKernel.IKernel"/> where the facility is registered.
-            </summary>
-            <value>The <see cref="T:Castle.MicroKernel.IKernel"/>.</value>
-        </member>
         <member name="T:Castle.MicroKernel.Facilities.FacilityException">
             <summary>
               Base exception to be used by facilities.
             </summary>
-        </member>
-        <member name="M:Castle.Facilities.Startable.StartableFacility.DeferredStart">
-            <summary>
-              This method changes behavior of the facility. Deferred mode should be used when you
-              have single call to <see cref="M:Castle.Windsor.IWindsorContainer.Install(Castle.MicroKernel.Registration.IWindsorInstaller[])"/> and register all your components there.
-              Enabling this mode will optimize the behavior of the facility so that it will wait 'till the end of
-              installation and only after all <see cref="T:Castle.MicroKernel.Registration.IWindsorInstaller"/>s were ran it will instantiate and
-              start all the startable components. An exception will be thrown if a startable component can't be 
-              instantiated and started. This will help you fail fast and diagnose issues quickly. If you don't want
-              the exception to be thrown and you prefer the component to fail silently, use <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredTryStart"/> method instead.
-            </summary>
-            <remarks>
-              It is recommended to use this method over <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredTryStart"/> method.
-            </remarks>
-        </member>
-        <member name="M:Castle.Facilities.Startable.StartableFacility.DeferredTryStart">
-            <summary>
-              This method changes behavior of the facility. Deferred mode should be used when you
-              have single call to <see cref="M:Castle.Windsor.IWindsorContainer.Install(Castle.MicroKernel.Registration.IWindsorInstaller[])"/> and register all your components there.
-              Enabling this mode will optimize the behavior of the facility so that it will wait 'till the end of
-              installation and only after all <see cref="T:Castle.MicroKernel.Registration.IWindsorInstaller"/>s were ran it will instantiate and
-              start all the startable components. No exception will be thrown if a startable component can't be 
-              instantiated and started. If you'd rather fail fast and diagnose issues quickly, use <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredStart"/> method instead.
-            </summary>
-            <remarks>
-              It is recommended to use <see cref="M:Castle.Facilities.Startable.StartableFacility.DeferredStart"/> method over this method.
-            </remarks>
-        </member>
-        <member name="M:Castle.Facilities.Startable.StartableFacility.CheckWaitingList">
-            <summary>
-              For each new component registered,
-              some components in the WaitingDependency
-              state may have became valid, so we check them
-            </summary>
-        </member>
-        <member name="M:Castle.Facilities.Startable.StartableFacility.TryStart(Castle.MicroKernel.IHandler)">
-            <summary>
-              Request the component instance
-            </summary>
-            <param name = "handler"></param>
         </member>
         <member name="M:Castle.Facilities.Startable.StartableFacilityRegistrationExtensions.StartUsingMethod``1(Castle.MicroKernel.Registration.ComponentRegistration{``0},System.String)">
             <summary>
@@ -2401,9 +2392,7 @@
             </summary>
         </member>
         <member name="P:Castle.Core.Internal.GraphNode.Dependents">
-            <summary>
-              The nodes that this node depends on
-            </summary>
+            <summary>The nodes that this node depends on</summary>
         </member>
         <member name="F:Castle.Core.Internal.VertexColor.White">
             <summary>
@@ -5803,11 +5792,7 @@
             </summary>
         </member>
         <member name="T:Castle.MicroKernel.Resolvers.DefaultDependencyResolver">
-            <summary>
-              Default implementation for <see cref="T:Castle.MicroKernel.IDependencyResolver"/>.
-              This implementation is quite simple, but still should be useful
-              for 99% of situations.
-            </summary>
+            <summary>Default implementation for <see cref="T:Castle.MicroKernel.IDependencyResolver"/>. This implementation is quite simple, but still should be useful for 99% of situations.</summary>
         </member>
         <member name="T:Castle.MicroKernel.IDependencyResolver">
             <summary>
@@ -5837,65 +5822,53 @@
             <param name = "subResolver">The subresolver instance</param>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DefaultDependencyResolver.AddSubResolver(Castle.MicroKernel.ISubDependencyResolver)">
-            <summary>
-              Registers a sub resolver instance
-            </summary>
+            <summary>Registers a sub resolver instance</summary>
             <param name = "subResolver">The subresolver instance</param>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Initialize(Castle.MicroKernel.IKernelInternal,Castle.MicroKernel.DependencyDelegate)">
-            <summary>
-              Initializes this instance with the specified dependency delegate.
-            </summary>
+            <summary>Initializes this instance with the specified dependency delegate.</summary>
             <param name = "kernel">kernel</param>
             <param name = "dependencyDelegate">The dependency delegate.</param>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DefaultDependencyResolver.RemoveSubResolver(Castle.MicroKernel.ISubDependencyResolver)">
-            <summary>
-              Unregisters a sub resolver instance previously registered
-            </summary>
+            <summary>Unregisters a sub resolver instance previously registered</summary>
             <param name = "subResolver">The subresolver instance</param>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DefaultDependencyResolver.CanResolve(Castle.MicroKernel.Context.CreationContext,Castle.MicroKernel.ISubDependencyResolver,Castle.Core.ComponentModel,Castle.Core.DependencyModel)">
-            <summary>
-              Returns true if the resolver is able to satisfy the specified dependency.
-            </summary>
+            <summary>Returns true if the resolver is able to satisfy the specified dependency.</summary>
             <param name = "context">Creation context, which is a resolver itself</param>
             <param name = "contextHandlerResolver">Parent resolver</param>
             <param name = "model">Model of the component that is requesting the dependency</param>
             <param name = "dependency">The dependency model</param>
             <returns>
-              <c>true</c>
-              if the dependency can be satisfied</returns>
+                <c>true</c>
+                if the dependency can be satisfied
+            </returns>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DefaultDependencyResolver.Resolve(Castle.MicroKernel.Context.CreationContext,Castle.MicroKernel.ISubDependencyResolver,Castle.Core.ComponentModel,Castle.Core.DependencyModel)">
-            <summary>
-              Try to resolve the dependency by checking the parameters in 
-              the model or checking the Kernel for the requested service.
-            </summary>
+            <summary>Try to resolve the dependency by checking the parameters in the model or checking the Kernel for the requested service.</summary>
             <remarks>
-              The dependency resolver has the following precedence order:
-              <list type="bullet">
-                <item>
-                  <description>The dependency is checked within the
-                    <see cref="T:Castle.MicroKernel.Context.CreationContext"/>
-                  </description>
-                </item>
-                <item>
-                  <description>The dependency is checked within the
-                    <see cref="T:Castle.MicroKernel.IHandler"/>
-                    instance for the component</description>
-                </item>
-                <item>
-                  <description>The dependency is checked within the registered
-                    <see cref="T:Castle.MicroKernel.ISubDependencyResolver"/>
-                    s</description>
-                </item>
-                <item>
-                  <description>Finally the resolver tries the normal flow 
-                    which is using the configuration
-                    or other component to satisfy the dependency</description>
-                </item>
-              </list>
+                The dependency resolver has the following precedence order:
+                <list type="bullet">
+                    <item>
+                        <description>The dependency is checked within the
+                            <see cref="T:Castle.MicroKernel.Context.CreationContext"/>
+                        </description>
+                    </item>
+                    <item>
+                        <description>The dependency is checked within the
+                            <see cref="T:Castle.MicroKernel.IHandler"/>
+                            instance for the component</description>
+                    </item>
+                    <item>
+                        <description>The dependency is checked within the registered
+                            <see cref="T:Castle.MicroKernel.ISubDependencyResolver"/>
+                            s</description>
+                    </item>
+                    <item>
+                        <description>Finally the resolver tries the normal flow which is using the configuration or other component to satisfy the dependency</description>
+                    </item>
+                </list>
             </remarks>
             <param name="context">Creation context, which is a resolver itself</param>
             <param name="contextHandlerResolver">Parent resolver</param>
@@ -5904,10 +5877,7 @@
             <returns>The dependency resolved value or null</returns>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DefaultDependencyResolver.RebuildContextForParameter(Castle.MicroKernel.Context.CreationContext,System.Type)">
-            <summary>
-              This method rebuild the context for the parameter type.
-              Naive implementation.
-            </summary>
+            <summary>This method rebuild the context for the parameter type. Naive implementation.</summary>
         </member>
         <member name="M:Castle.MicroKernel.Resolvers.DependencyResolverException.#ctor(System.String,System.Exception)">
             <summary>
