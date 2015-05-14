@@ -10,16 +10,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Careers.Api.Host.dll">
-      <publishTime>05/13/2015 00:37:33</publishTime>
+      <publishTime>05/14/2015 20:23:25</publishTime>
     </File>
     <File Include="bin/Castle.Core.dll">
-      <publishTime>05/09/2015 16:47:12</publishTime>
+      <publishTime>05/13/2015 04:03:04</publishTime>
+    </File>
+    <File Include="bin/Castle.Facilities.Logging.dll">
+      <publishTime>05/13/2015 03:02:49</publishTime>
+    </File>
+    <File Include="bin/Castle.Services.Logging.Log4netIntegration.dll">
+      <publishTime>05/13/2015 04:03:05</publishTime>
     </File>
     <File Include="bin/Castle.Windsor.dll">
-      <publishTime>05/09/2015 16:47:13</publishTime>
+      <publishTime>05/13/2015 03:02:48</publishTime>
     </File>
     <File Include="bin/log4net.dll">
-      <publishTime>05/12/2015 14:57:24</publishTime>
+      <publishTime>05/13/2015 04:03:04</publishTime>
     </File>
     <File Include="bin/Nancy.Bootstrappers.Windsor.dll">
       <publishTime>05/09/2015 16:47:14</publishTime>
@@ -33,11 +39,14 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>05/10/2015 21:33:44</publishTime>
     </File>
+    <File Include="log4net.config">
+      <publishTime>05/13/2015 04:06:02</publishTime>
+    </File>
     <File Include="packages.config">
-      <publishTime>05/12/2015 14:57:25</publishTime>
+      <publishTime>05/13/2015 04:03:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/11/2015 21:45:51</publishTime>
+      <publishTime>05/14/2015 20:23:25</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -17,3 +17,6 @@ C:\easyjet\Careers.Api\Careers.Api.Host\obj\Release\Careers.Api.Host.dll
 C:\easyjet\Careers.Api\Careers.Api.Host\obj\Release\Careers.Api.Host.pdb
 C:\easyjet\Careers.Api\Careers.Api.Host\bin\log4net.dll
 C:\easyjet\Careers.Api\Careers.Api.Host\bin\log4net.xml
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Facilities.Logging.dll
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Services.Logging.Log4netIntegration.dll
+C:\easyjet\Careers.Api\Careers.Api.Host\bin\Castle.Facilities.Logging.xml
