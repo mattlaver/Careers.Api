@@ -10,7 +10,7 @@ namespace Careers.Api.Host.Queries
 {
     public class GetJobsFromFileQuery : IGetJobsQuery
     {
-        private readonly string _dataPath = ConfigurationManager.AppSettings["JobSummaryDirectory"]; 
+        private readonly string _dataPath = AppDomain.CurrentDomain.BaseDirectory + ConfigurationManager.AppSettings["JobSummaryDirectory"]; 
         private ILogger _logger = NullLogger.Instance;
 
         public ILogger Logger

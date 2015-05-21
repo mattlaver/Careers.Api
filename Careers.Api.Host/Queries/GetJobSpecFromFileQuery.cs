@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.IO;
 using Castle.Core.Logging;
 
@@ -6,7 +7,7 @@ namespace Careers.Api.Host.Queries
 {
     public class GetJobSpecFromFileQuery : IGetJobSpecQuery
     {
-        private readonly string _dataPath = ConfigurationManager.AppSettings["JobSpecDirectory"];
+        private readonly string _dataPath = AppDomain.CurrentDomain.BaseDirectory +  ConfigurationManager.AppSettings["JobSpecDirectory"];
         private ILogger _logger = NullLogger.Instance;
 
         public ILogger Logger
